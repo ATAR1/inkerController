@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.535,D:\inker\MainWindow.dfm=d:\#Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.315,=D:\inker\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.056,D:\inker\Project1.dproj=d:\#Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.422,D:\inker\FakeDriver.dfm=D:\inker\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.535,d:\#Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\inker\MainWindow.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.029,=D:\inker\Indicator.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.538,=D:\inker\ISO.PAS</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.535,D:\inker\MainWindow.pas=d:\#Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.422,D:\inker\Unit2.dfm=D:\inker\FakeDriver.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.430,=d:\#Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.422,D:\inker\FakeDriver.pas=D:\inker\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.535,d:\#Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\inker\MainWindow.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.538,=D:\inker\ISO.PAS</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.056,d:\#Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\inker\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.422,D:\inker\Unit2.pas=D:\inker\FakeDriver.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.315,=D:\inker\Unit2.pas</Transaction>
+    <Transaction>2017.11.22 15:45:54.903,=D:\inker\Unit1.pas</Transaction>
+    <Transaction>2017.11.22 15:46:41.603,D:\inker\Speedometer.pas=D:\inker\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

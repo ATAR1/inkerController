@@ -5,7 +5,8 @@ uses
   MainWindow in 'MainWindow.pas' {Form1},
   ISO in 'ISO.PAS',
   FakeDriver in 'FakeDriver.pas' {Form2},
-  Indicator in 'Indicator.pas';
+  Indicator in 'Indicator.pas',
+  Speedometer in 'Speedometer.pas';
 
 {$R *.res}
 

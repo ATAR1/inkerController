@@ -30,51 +30,9 @@ var
   Form1: TForm1;
 
 implementation
-uses FakeDriver;
+uses FakeDriver,Speedometer;
 {$R *.dfm}
-var speed,speed2:real;
-    baseAdress:word;
-    storedState:byte;
-    onTime:array [0..3] of longint;
-    offTime:array [0..3] of longint;
-    distance:array [0..2] of integer;
-
-function GetSpeed(time1:longint;time2:longint;intervalNum:integer):real;
-begin
-  if((time1<0) or (time2<0) or (time1=time2) ) then exit(-1);
-  Result:=distance[intervalNum]/(time1-time2);
-end;
-
-procedure SetDetector(detectorNum:integer; state:byte);
-begin
-  if(state>0) then
-    begin
-      onTime[detectorNum]:= GetTickCount();
-      if(detectorNum>0)then
-        speed:=GetSpeed(onTime[detectorNum],onTime[detectorNum-1],detectorNum-1);
-      storedState:=storedState or (1 shl detectorNum);
-    end
-  else
-    begin
-      offTime[detectorNum]:=GetTickCount();
-      if(detectorNum>0)then
-        speed2:=GetSpeed(offTime[detectorNum],offTime[detectorNum-1], detectorNum-1);
-      storedState:=storedState and not (1 shl detectorNum);
-    end;
-
-end;
-
-
-procedure MeasuringSpeed(inputByte:word);
-var i:integer;
-begin
-  for i := 0 to 3 do
-    if(((storedState xor inputByte) and (1 shl i))>0) then
-      begin
-        SetDetector(i,(inputByte and (1 shl i)));
-      end;
-end;
-
+var baseAdress:word;
 
 
 { TForm1 }
@@ -88,7 +46,7 @@ begin
   MeasuringSpeed(inputByte);
   Label1.Caption:='—корость по переднему концу = '+IntToStr(Round(speed*1000));
   Label2.Caption:='—корость по заднему концу = '+IntToStr(Round(speed2*1000));
-  Label3.Caption:='—редн€€ скорость = '+IntToStr(Round((speed+speed2)*1000/2));
+  Label3.Caption:='—редн€€ скорость = '+IntToStr(Round(GetAverageSpeed()*1000));
 end;
 
 procedure TForm1.ShowIndicators(inputByte: Word);
@@ -134,14 +92,5 @@ begin
   ISO_DriverClose();
 end;
 
-var i:integer;
-initialization
-  for i := 0 to 2 do
-    distance[i]:=100;
 
-  for i := 0 to 3 do
-    begin
-      onTime[i]:=-1;
-      offTime[i]:=-1;
-    end;
 end.
