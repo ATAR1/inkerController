@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2017.11.22 09:11:33.430,=d:\#Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017.11.22 09:13:00.535,D:\inker\MainWindow.pas=d:\#Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017.11.22 09:13:00.535,D:\inker\MainWindow.dfm=d:\#Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017.11.22 09:13:11.056,D:\inker\Project1.dproj=d:\#Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
