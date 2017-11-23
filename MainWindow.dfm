@@ -41,31 +41,95 @@ object Form1: TForm1
   end
   object Indicator4: TIndicator
     Left = 109
-    Top = 25
+    Top = 24
     Width = 17
     Height = 25
     Brush.Color = clGray
     Shape = stCircle
   end
   object Label1: TLabel
-    Left = 64
-    Top = 104
-    Width = 31
+    Left = 40
+    Top = 80
+    Width = 48
     Height = 13
-    Caption = 'Label1'
+    Caption = #1057#1082#1086#1088#1086#1089#1090#1100
   end
   object Label2: TLabel
-    Left = 64
-    Top = 123
-    Width = 31
+    Left = 40
+    Top = 99
+    Width = 48
     Height = 13
-    Caption = 'Label1'
+    Caption = #1057#1082#1086#1088#1086#1089#1090#1100
   end
   object Label3: TLabel
-    Left = 64
-    Top = 142
-    Width = 31
+    Left = 40
+    Top = 118
+    Width = 48
     Height = 13
-    Caption = 'Label1'
+    Caption = #1057#1082#1086#1088#1086#1089#1090#1100
+  end
+  object Indicator5: TIndicator
+    Left = 184
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator6: TIndicator
+    Left = 207
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator7: TIndicator
+    Left = 232
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator8: TIndicator
+    Left = 255
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator9: TIndicator
+    Left = 312
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator10: TIndicator
+    Left = 335
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator11: TIndicator
+    Left = 360
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator12: TIndicator
+    Left = 383
+    Top = 24
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
   end
 end

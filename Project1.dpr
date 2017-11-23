@@ -6,7 +6,8 @@ uses
   ISO in 'ISO.PAS',
   FakeDriver in 'FakeDriver.pas' {Form2},
   Indicator in 'Indicator.pas',
-  Speedometer in 'Speedometer.pas';
+  Speedometer in 'Speedometer.pas',
+  TimeDelayController in 'TimeDelayController.pas';
 
 {$R *.res}
 

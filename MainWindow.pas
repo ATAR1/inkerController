@@ -15,13 +15,23 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Indicator5: TIndicator;
+    Indicator6: TIndicator;
+    Indicator7: TIndicator;
+    Indicator8: TIndicator;
+    Indicator9: TIndicator;
+    Indicator10: TIndicator;
+    Indicator11: TIndicator;
+    Indicator12: TIndicator;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
 
   private
     mainCycleTimer:TTimer;
+    _indicators:array [0..11] of TIndicator;
     procedure Cycle(Sender: TObject);
     procedure ShowIndicators(inputByte: Word);
+
   public
     { Public declarations }
   end;
@@ -30,7 +40,7 @@ var
   Form1: TForm1;
 
 implementation
-uses FakeDriver,Speedometer;
+uses FakeDriver,Speedometer,TimeDelayController;
 {$R *.dfm}
 var baseAdress:word;
 
@@ -39,34 +49,29 @@ var baseAdress:word;
 
 procedure TForm1.Cycle(Sender: TObject);
 var
-  inputByte: Word;
+  inputByte,output: Word;
+  temp: Word;
+
 begin
   inputByte:=ISO_InputByte(baseAdress + 0);
-  ShowIndicators(inputByte);
   MeasuringSpeed(inputByte);
+  output:=HandleWithTimeDelay(inputByte shr 4);
+  temp:=inputByte or (output shl 8);
+  ShowIndicators(temp);
   Label1.Caption:='—корость по переднему концу = '+IntToStr(Round(speed*1000));
   Label2.Caption:='—корость по заднему концу = '+IntToStr(Round(speed2*1000));
   Label3.Caption:='—редн€€ скорость = '+IntToStr(Round(GetAverageSpeed()*1000));
 end;
 
 procedure TForm1.ShowIndicators(inputByte: Word);
+var
+  i: Integer;
 begin
-  if (inputByte and 1) <> 0 then
-    Indicator1.SetOn
-  else
-    Indicator1.SetOff;
-  if (inputByte and 2) <> 0 then
-    Indicator2.SetOn
-  else
-    Indicator2.SetOff;
-  if (inputByte and 4) <> 0 then
-    Indicator3.SetOn
-  else
-    Indicator3.SetOff;
-  if (inputByte and 8) <> 0 then
-    Indicator4.SetOn
-  else
-    Indicator4.SetOff;
+  for i := 0 to 11 do
+    if (inputByte and (1 shl i)) <> 0 then
+      _indicators[i].SetOn
+    else
+      _indicators[i].SetOff;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -80,6 +85,19 @@ begin
     ShowMessage('ќшибка при попытке открыть драйвер!');
     exit;
   end;
+
+  _indicators[0]:=Indicator1;
+  _indicators[1]:=Indicator2;
+  _indicators[2]:=Indicator3;
+  _indicators[3]:=Indicator4;
+  _indicators[4]:=Indicator5;
+  _indicators[5]:=Indicator6;
+  _indicators[6]:=Indicator7;
+  _indicators[7]:=Indicator8;
+  _indicators[8]:=Indicator9;
+  _indicators[9]:=Indicator10;
+  _indicators[10]:=Indicator11;
+  _indicators[11]:=Indicator12;
 
   mainCycleTimer:=TTimer.Create(self);
   mainCycleTimer.Interval:=50;

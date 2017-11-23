@@ -20,7 +20,12 @@ type
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
+    CheckBox8: TCheckBox;
     procedure CheckBoxClick(Sender: TObject);
+    procedure CheckBoxClick1(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,6 +72,25 @@ begin
   else
     begin
       checkBox.Caption:='Фотодатчик '+IntToStr(checkBox.Tag)+' закрыт';
+      stateByte:=stateByte and not (1 shl(num-1));
+    end;
+
+end;
+
+procedure TForm2.CheckBoxClick1(Sender: TObject);
+var checkBox:TCheckBox;
+    num:integer;
+begin
+  checkBox:= Sender as TCheckBox;
+  num := checkBox.Tag;
+  if(checkBox.Checked) then
+    begin
+      checkBox.Caption:='Краскоотметчик '+IntToStr(checkBox.Tag-4)+' вкл';
+      stateByte:=stateByte or (1 shl(num-1));
+    end
+  else
+    begin
+      checkBox.Caption:='Краскоотметчик '+IntToStr(checkBox.Tag-4)+' откл';
       stateByte:=stateByte and not (1 shl(num-1));
     end;
 

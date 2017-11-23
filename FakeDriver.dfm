@@ -53,4 +53,44 @@ object Form2: TForm2
     TabOrder = 3
     OnClick = CheckBoxClick
   end
+  object CheckBox5: TCheckBox
+    Tag = 5
+    Left = 8
+    Top = 96
+    Width = 145
+    Height = 17
+    Caption = #1050#1088#1072#1089#1082#1086#1086#1090#1084#1077#1090#1095#1080#1082' 1 '#1086#1090#1082#1083
+    TabOrder = 4
+    OnClick = CheckBoxClick1
+  end
+  object CheckBox6: TCheckBox
+    Tag = 6
+    Left = 154
+    Top = 96
+    Width = 169
+    Height = 17
+    Caption = #1050#1088#1072#1089#1082#1086#1086#1090#1084#1077#1090#1095#1080#1082' 2 '#1086#1090#1082#1083
+    TabOrder = 5
+    OnClick = CheckBoxClick1
+  end
+  object CheckBox7: TCheckBox
+    Tag = 7
+    Left = 300
+    Top = 96
+    Width = 169
+    Height = 17
+    Caption = #1050#1088#1072#1089#1082#1086#1086#1090#1084#1077#1090#1095#1080#1082' 3 '#1086#1090#1082#1083
+    TabOrder = 6
+    OnClick = CheckBoxClick1
+  end
+  object CheckBox8: TCheckBox
+    Tag = 8
+    Left = 447
+    Top = 96
+    Width = 169
+    Height = 17
+    Caption = #1050#1088#1072#1089#1082#1086#1086#1090#1084#1077#1090#1095#1080#1082' 4 '#1086#1090#1082#1083
+    TabOrder = 7
+    OnClick = CheckBoxClick1
+  end
 end

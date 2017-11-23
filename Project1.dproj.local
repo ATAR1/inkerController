@@ -12,5 +12,7 @@
     <Transaction>1899.12.30 00:00:00.000.315,=D:\inker\Unit2.pas</Transaction>
     <Transaction>2017.11.22 15:45:54.903,=D:\inker\Unit1.pas</Transaction>
     <Transaction>2017.11.22 15:46:41.603,D:\inker\Speedometer.pas=D:\inker\Unit1.pas</Transaction>
+    <Transaction>2017.11.23 09:13:42.626,=D:\inker\Unit1.pas</Transaction>
+    <Transaction>2017.11.23 09:15:15.506,D:\inker\TimeDelayController.pas=D:\inker\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

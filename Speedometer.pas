@@ -34,14 +34,16 @@ begin
     begin
       onTime[detectorNum]:= GetTickCount();
       if(detectorNum>0)then
-        speed:=GetSpeed(onTime[detectorNum],onTime[detectorNum-1],detectorNum-1);
+        if(onTime[detectorNum-1]>0)then
+          speed:=GetSpeed(onTime[detectorNum],onTime[detectorNum-1],detectorNum-1);
       storedState:=storedState or (1 shl detectorNum);
     end
   else
     begin
       offTime[detectorNum]:=GetTickCount();
       if(detectorNum>0)then
-        speed2:=GetSpeed(offTime[detectorNum],offTime[detectorNum-1], detectorNum-1);
+        if(offTime[detectorNum-1]>0)then
+          speed2:=GetSpeed(offTime[detectorNum],offTime[detectorNum-1], detectorNum-1);
       storedState:=storedState and not (1 shl detectorNum);
     end;
 
