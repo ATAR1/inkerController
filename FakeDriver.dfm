@@ -3,7 +3,7 @@ object Form2: TForm2
   Top = 0
   Caption = #1048#1084#1080#1090#1072#1090#1086#1088' '#1087#1088#1086#1094#1077#1089#1089#1072' '#1082#1086#1085#1090#1088#1086#1083#1103
   ClientHeight = 299
-  ClientWidth = 635
+  ClientWidth = 880
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +13,38 @@ object Form2: TForm2
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object Indicator1: TIndicator
+    Left = 672
+    Top = 88
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator2: TIndicator
+    Left = 695
+    Top = 88
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator3: TIndicator
+    Left = 718
+    Top = 88
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
+  object Indicator4: TIndicator
+    Left = 741
+    Top = 88
+    Width = 17
+    Height = 25
+    Brush.Color = clGray
+    Shape = stCircle
+  end
   object CheckBox1: TCheckBox
     Tag = 1
     Left = 8

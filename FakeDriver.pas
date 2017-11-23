@@ -4,15 +4,16 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Indicator;
 
 const
-  ISO_NoError               =0;
+  NoError               =0;
 
-function  ISO_DriverInit(var wTotalBoards:WORD)       :     WORD;
-procedure ISO_DriverClose			      		;
-function  ISO_InputByte( wPortAddr :word)             :     word;
-
+function  PCI_DriverInit(var wTotalBoards:WORD)       :     WORD;
+procedure PCI_DriverClose;
+procedure PCI_DO16(wBaseAddr:LongInt; wOutputVal :LongInt)	;
+function  PCI_DI16(wPortAddr:LongInt)		      :   LongInt ;
 
 type
   TForm2 = class(TForm)
@@ -24,6 +25,10 @@ type
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
     CheckBox8: TCheckBox;
+    Indicator1: TIndicator;
+    Indicator2: TIndicator;
+    Indicator3: TIndicator;
+    Indicator4: TIndicator;
     procedure CheckBoxClick(Sender: TObject);
     procedure CheckBoxClick1(Sender: TObject);
   private
@@ -34,25 +39,46 @@ type
 
 var
   Form2: TForm2;
-
+  Form: TForm2;
 implementation
 var stateByte:word;
 
-function  ISO_DriverInit(var wTotalBoards:WORD):WORD;
+function  PCI_DriverInit(var wTotalBoards:WORD):WORD;
 begin
-Form2:=TForm2.Create(nil);
-Form2.Show();
-Result:=ISO_NoError;
+Form:=TForm2.Create(nil);
+Form.Show();
+Form.Indicator1.SetOn();
+Result:=NoError;
 end;
 
-procedure ISO_DriverClose;
+procedure PCI_DriverClose;
 begin
-  Form2.Close();
+  Form.Close();
 end;
 
-function  ISO_InputByte( wPortAddr :word):word;
+function  PCI_DI16(wPortAddr:LongInt)		      :   LongInt ;
 begin
   Result := stateByte;
+end;
+
+procedure PCI_DO16(wBaseAddr:LongInt; wOutputVal :LongInt)	;
+begin
+  if(wOutputVal and (1 shl 0))>0 then
+    Form.Indicator1.SetOn()
+  else
+    Form.Indicator1.SetOff();
+  if(wOutputVal and (1 shl 1))>0 then
+    Form.Indicator2.SetOn()
+  else
+    Form.Indicator2.SetOff();
+  if(wOutputVal and (1 shl 2))>0 then
+    Form.Indicator3.SetOn()
+  else
+    Form.Indicator3.SetOff();
+  if(wOutputVal and (1 shl 3))>0 then
+    Form.Indicator4.SetOn()
+  else
+    Form.Indicator4.SetOff();
 end;
 
 

@@ -3,11 +3,12 @@ program Project1;
 uses
   Vcl.Forms,
   MainWindow in 'MainWindow.pas' {Form1},
-  ISO in 'ISO.PAS',
   FakeDriver in 'FakeDriver.pas' {Form2},
   Indicator in 'Indicator.pas',
   Speedometer in 'Speedometer.pas',
-  TimeDelayController in 'TimeDelayController.pas';
+  TimeDelayController in 'TimeDelayController.pas',
+  Settings in 'Settings.pas',
+  P16r16 in 'P16r16.pas';
 
 {$R *.res}
 

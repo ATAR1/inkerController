@@ -12,9 +12,6 @@ type
     Indicator2: TIndicator;
     Indicator3: TIndicator;
     Indicator4: TIndicator;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
     Indicator5: TIndicator;
     Indicator6: TIndicator;
     Indicator7: TIndicator;
@@ -23,6 +20,26 @@ type
     Indicator10: TIndicator;
     Indicator11: TIndicator;
     Indicator12: TIndicator;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
+    lblFrontSpeed: TLabel;
+    lblRearSpeed: TLabel;
+    lblAvgSpeed: TLabel;
+    GroupBox5: TGroupBox;
+    lblBoardAdress: TLabel;
+    lblDistanceDetectors1: TLabel;
+    lblDistanceDetectors2: TLabel;
+    lblDistanceDetectors3: TLabel;
+    lblInkerDistance1: TLabel;
+    lblInkerDistance2: TLabel;
+    lblInkerDistance3: TLabel;
+    lblInkerDistance4: TLabel;
+    lblDelay1: TLabel;
+    lblDelay2: TLabel;
+    lblDelay3: TLabel;
+    lblDelay4: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
 
@@ -31,7 +48,8 @@ type
     _indicators:array [0..11] of TIndicator;
     procedure Cycle(Sender: TObject);
     procedure ShowIndicators(inputByte: Word);
-
+    procedure ShowSettings();
+    procedure ShowCalculatedValues;
   public
     { Public declarations }
   end;
@@ -40,27 +58,39 @@ var
   Form1: TForm1;
 
 implementation
-uses FakeDriver,Speedometer,TimeDelayController;
+uses
+{$IFDEF DEBUG}
+  FakeDriver,
+{$ELSE}
+  P16r16,
+{$ENDIF}
+  Speedometer,TimeDelayController,Settings;
 {$R *.dfm}
-var baseAdress:word;
 
+
+function CalculateDelay(speed:real; distance:integer):integer;
+begin
+  if(speed=0) then exit(0);
+  Result:=Round(distance/speed);
+end;
 
 { TForm1 }
 
 procedure TForm1.Cycle(Sender: TObject);
 var
-  inputByte,output: Word;
-  temp: Word;
-
+  inputByte,output: Longint;
+  delays:array [0..3] of integer;
+  i: Integer;
 begin
-  inputByte:=ISO_InputByte(baseAdress + 0);
+  inputByte:=PCI_DI16(baseAdress);
   MeasuringSpeed(inputByte);
-  output:=HandleWithTimeDelay(inputByte shr 4);
-  temp:=inputByte or (output shl 8);
-  ShowIndicators(temp);
-  Label1.Caption:='Скорость по переднему концу = '+IntToStr(Round(speed*1000));
-  Label2.Caption:='Скорость по заднему концу = '+IntToStr(Round(speed2*1000));
-  Label3.Caption:='Средняя скорость = '+IntToStr(Round(GetAverageSpeed()*1000));
+  for i := 0 to 3 do
+    delays[i]:=CalculateDelay(GetAverageSpeed(), basesOfInker[i]);
+  SetDelays(delays);
+  output:=HandleWithTimeDelay((inputByte shr 4));
+  PCI_DO16(baseAdress,output);
+  ShowIndicators(inputByte or (output shl 8));
+  ShowCalculatedValues();
 end;
 
 procedure TForm1.ShowIndicators(inputByte: Word);
@@ -74,17 +104,42 @@ begin
       _indicators[i].SetOff;
 end;
 
+procedure TForm1.ShowSettings;
+begin
+  lblBoardAdress.Caption:='Адрес платы: '+IntToStr(baseAdress);
+  lblDistanceDetectors1.Caption:='Дистанция между 1-м и 2-м фотодатчиком: '+IntToStr(distanceBetweenDetectors[0]);
+  lblDistanceDetectors2.Caption:='Дистанция между 2-м и 3-м фотодатчиком: '+IntToStr(distanceBetweenDetectors[1]);
+  lblDistanceDetectors3.Caption:='Дистанция между 3-м и 4-м фотодатчиком: '+IntToStr(distanceBetweenDetectors[2]);
+  lblInkerDistance1.Caption:='Расстояние до 1-го краскоотметчика: '+IntToStr(basesOfInker[0]);
+  lblInkerDistance2.Caption:='Расстояние до 2-го краскоотметчика: '+IntToStr(basesOfInker[1]);
+  lblInkerDistance3.Caption:='Расстояние до 3-го краскоотметчика: '+IntToStr(basesOfInker[2]);
+  lblInkerDistance4.Caption:='Расстояние до 4-го краскоотметчика: '+IntToStr(basesOfInker[3]);
+end;
+
+procedure TForm1.ShowCalculatedValues;
+begin
+  lblFrontSpeed.Caption := 'Скорость по переднему концу = ' + IntToStr(Round(speed * 1000));
+  lblRearSpeed.Caption := 'Скорость по заднему концу = ' + IntToStr(Round(speed2 * 1000));
+  lblAvgSpeed.Caption := 'Средняя скорость = ' + IntToStr(Round(GetAverageSpeed * 1000));
+  lblDelay1.Caption:= 'Задержка 1-го кр-ка:'+IntToStr(delays[0])+ ' мс.';
+  lblDelay2.Caption:= 'Задержка 2-го кр-ка:'+IntToStr(delays[1])+ ' мс.';
+  lblDelay3.Caption:= 'Задержка 3-го кр-ка:'+IntToStr(delays[2])+ ' мс.';
+  lblDelay4.Caption:= 'Задержка 4-го кр-ка:'+IntToStr(delays[3])+ ' мс.';
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 var rtn:word;
     totalBoards:word;
 begin
   baseAdress:=0;
-  rtn := ISO_DriverInit( totalBoards );
-  if(rtn<>ISO_NoError)then
+  rtn := PCI_DriverInit( totalBoards );
+  if(rtn<>NoError)then
   begin
     ShowMessage('Ошибка при попытке открыть драйвер!');
     exit;
   end;
+
+  ShowSettings();
 
   _indicators[0]:=Indicator1;
   _indicators[1]:=Indicator2;
@@ -103,12 +158,12 @@ begin
   mainCycleTimer.Interval:=50;
   mainCycleTimer.OnTimer:=Cycle;
   mainCycleTimer.Enabled:=true;
+
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
-  ISO_DriverClose();
+  PCI_DriverClose();
 end;
-
 
 end.

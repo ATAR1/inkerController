@@ -8,11 +8,12 @@ function GetAverageSpeed():real;
 implementation
 
 uses
-  Winapi.Windows;
+  Winapi.Windows,Settings;
+
 var storedState:byte;
     onTime:array [0..3] of longint;
     offTime:array [0..3] of longint;
-    distance:array [0..2] of integer;
+
 
 function GetAverageSpeed():real;
 begin
@@ -25,7 +26,7 @@ end;
 function GetSpeed(time1:longint;time2:longint;intervalNum:integer):real;
 begin
   if((time1<0) or (time2<0) or (time1=time2) ) then exit(-1);
-  Result:=distance[intervalNum]/(time1-time2);
+  Result:=distanceBetweenDetectors[intervalNum]/(time1-time2);
 end;
 
 procedure SetDetector(detectorNum:integer; state:byte);
@@ -63,9 +64,6 @@ end;
 
 var i:integer;
 initialization
-  for i := 0 to 2 do
-    distance[i]:=100;
-
   for i := 0 to 3 do
     begin
       onTime[i]:=-1;

@@ -2,7 +2,8 @@ unit TimeDelayController;
 
 interface
 function HandleWithTimeDelay(inputByte:word):word;
-
+procedure SetDelays(delaysIn:array of integer);
+var delays:array [0..3] of integer;
 
 implementation
 
@@ -13,18 +14,18 @@ var
   queuesOff:array [0..3] of TQueue<Longint>;
   storedState:word;
   output:word;
-  delay:integer;
+
 
 procedure SetInkerDelay(inkerNum:integer; state:byte);
 begin
   if(state>0) then
     begin
-      queuesOn[inkerNum].Enqueue(GetTickCount()+delay);
+      queuesOn[inkerNum].Enqueue(GetTickCount()+delays[inkerNum]);
       storedState:=storedState or (1 shl inkerNum);
     end
   else
     begin
-      queuesOff[inkerNum].Enqueue(GetTickCount()+delay);
+      queuesOff[inkerNum].Enqueue(GetTickCount()+delays[inkerNum]);
       storedState:=storedState and not (1 shl inkerNum);
     end;
 end;
@@ -63,6 +64,14 @@ begin
   SetBit();
   Result:=output;
 end;
+
+procedure SetDelays(delaysIn:array of integer);
+var i:integer;
+begin
+  for i := 0 to 3 do
+    delays[i]:=delaysIn[i];
+end;
+
 var i:integer;
 initialization
   for i := 0 to 3 do
@@ -70,6 +79,4 @@ initialization
       queuesOn[i]:=TQueue<Longint>.Create();
       queuesOff[i]:=TQueue<Longint>.Create();
     end;
-
-  delay:=1000;
 end.
