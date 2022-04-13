@@ -94,8 +94,10 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="TestDetectorController.pas"/>
         <DCCReference Include="..\inkercontroller\InputSignalsController.pas"/>
+        <DCCReference Include="TestInputSignalsController.pas"/>
+        <DCCReference Include="..\InkerController\Signal.pas"/>
+        <DCCReference Include="..\InkerController\DIOCardInput.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

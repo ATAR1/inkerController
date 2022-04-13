@@ -1,9 +1,12 @@
 unit DriverWrap;
 
 interface
+
+uses
+  DIOCardInput;
 type
 // Обертка для драйвера платы DIO
-TDriverWrap = class(TObject)
+TDriverWrap = class(TInterfacedObject, IDIOCardInput)
 private
     baseAdress: Integer;
 public

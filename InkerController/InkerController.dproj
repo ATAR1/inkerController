@@ -114,6 +114,7 @@
         <DCCReference Include="DriverWrap.pas"/>
         <DCCReference Include="InputSignalsController.pas"/>
         <DCCReference Include="Signal.pas"/>
+        <DCCReference Include="DIOCardInput.pas"/>
         <None Include="ModelSupport_InkerController\default.txaPackage"/>
         <None Include="ModelSupport_InkerController\default.txvpck"/>
         <None Include="ModelSupport_InkerController\DetectorController\default.txvpck"/>
@@ -130,6 +131,11 @@
         <None Include="ModelSupport_InkerController\Class Diagram.txvcls"/>
         <None Include="ModelSupport_InkerController\Signal\default.txvpck"/>
         <None Include="ModelSupport_InkerController\Signal\default.txaPackage"/>
+        <None Include="ModelSupport_InkerController\InputSignalsController\default.txvpck"/>
+        <None Include="ModelSupport_InkerController\DetectorController\default.txaPackage"/>
+        <None Include="ModelSupport_InkerController\InputSignalsController\default.txaPackage"/>
+        <None Include="ModelSupport_InkerController\DIOCardInput\default.txvpck"/>
+        <None Include="ModelSupport_InkerController\DIOCardInput\default.txaPackage"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -170,7 +176,25 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="ModelSupport_InkerController\DetectorController\default.txaPackage" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="ModelSupport_InkerController\DetectorController\default.txvpck" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="ModelSupport_InkerController\DIOCardInput\default.txaPackage" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="ModelSupport_InkerController\DIOCardInput\default.txvpck" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -201,6 +225,18 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="ModelSupport_InkerController\InkerController\default.txvpck" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="ModelSupport_InkerController\InputSignalsController\default.txaPackage" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="ModelSupport_InkerController\InputSignalsController\default.txvpck" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

@@ -11,7 +11,8 @@ uses
   P16r16 in 'P16r16.pas',
   DriverWrap in 'DriverWrap.pas',
   InputSignalsController in 'InputSignalsController.pas',
-  Signal in 'Signal.pas';
+  Signal in 'Signal.pas',
+  DIOCardInput in 'DIOCardInput.pas';
 
 {$R *.res}
 
