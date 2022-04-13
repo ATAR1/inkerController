@@ -1,3 +1,8 @@
 /win32/
 /__*/
 *.local
+*.identcache
+*.stat
+*/__*/
+*/__*/*
+*/win32/*
