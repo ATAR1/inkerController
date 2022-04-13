@@ -15,7 +15,9 @@ program InkerControllerTests;
 {$ENDIF}
 
 uses
-  DUnitTestRunner;
+  DUnitTestRunner,
+  TestDetectorController in 'TestDetectorController.pas',
+  DetectorController in '..\InkerController\DetectorController.pas';
 
 {R *.RES}
 

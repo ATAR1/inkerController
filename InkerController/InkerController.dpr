@@ -9,7 +9,8 @@ uses
   TimeDelayController in 'TimeDelayController.pas',
   Settings in 'Settings.pas',
   P16r16 in 'P16r16.pas',
-  DriverWrap in 'DriverWrap.pas';
+  DriverWrap in 'DriverWrap.pas',
+  DetectorController in 'DetectorController.pas';
 
 {$R *.res}
 
