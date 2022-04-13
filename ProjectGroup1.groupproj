@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3C7ECACD-8A35-43EF-9833-B87176376ABB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="InkerController\InkerController.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PromAutomationPkg\PromAutomation.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="InkerController">
+        <MSBuild Projects="InkerController\InkerController.dproj"/>
+    </Target>
+    <Target Name="InkerController:Clean">
+        <MSBuild Projects="InkerController\InkerController.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="InkerController:Make">
+        <MSBuild Projects="InkerController\InkerController.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PromAutomation">
+        <MSBuild Projects="PromAutomationPkg\PromAutomation.dproj"/>
+    </Target>
+    <Target Name="PromAutomation:Clean">
+        <MSBuild Projects="PromAutomationPkg\PromAutomation.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PromAutomation:Make">
+        <MSBuild Projects="PromAutomationPkg\PromAutomation.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="InkerController;PromAutomation"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="InkerController:Clean;PromAutomation:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="InkerController:Make;PromAutomation:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
