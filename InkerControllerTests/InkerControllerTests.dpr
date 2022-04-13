@@ -17,7 +17,7 @@ program InkerControllerTests;
 uses
   DUnitTestRunner;
 
-{$R *.RES}
+{R *.RES}
 
 begin
   DUnitTestRunner.RunRegisteredTests;

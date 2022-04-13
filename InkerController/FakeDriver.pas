@@ -9,11 +9,16 @@ uses
 
 const
   NoError               =0;
+  TYPE_P16R16 =0;
 
 function  PCI_DriverInit(var wTotalBoards:WORD)       :     WORD;
 procedure PCI_DriverClose;
 procedure PCI_DO16(wBaseAddr:LongInt; wOutputVal :LongInt)	;
 function  PCI_DI16(wPortAddr:LongInt)		      :   LongInt ;
+function  PCI_GetConfigAddressSpace(
+	         wBoardNo: word; var TypeID: word;
+	         var wAddress0: word; var wAddress1: word; var wAddress2: word;
+	         var wAddress3: word; var wAddress4: word; var wAddress5: word):word;
 
 type
   TFakeDriverForm = class(TForm)
@@ -45,10 +50,10 @@ var stateByte:word;
 
 function  PCI_DriverInit(var wTotalBoards:WORD):WORD;
 begin
-Form:=TFakeDriverForm.Create(nil);
-Form.Show();
-Form.Indicator1.SetOn();
-Result:=NoError;
+  Form:=TFakeDriverForm.Create(nil);
+  Form.Show();
+  Form.Indicator1.SetOn();
+  Result:=NoError;
 end;
 
 procedure PCI_DriverClose;
@@ -79,6 +84,14 @@ begin
     Form.Indicator4.SetOn()
   else
     Form.Indicator4.SetOff();
+end;
+
+function  PCI_GetConfigAddressSpace(
+	         wBoardNo: word; var TypeID: word;
+	         var wAddress0: word; var wAddress1: word; var wAddress2: word;
+	         var wAddress3: word; var wAddress4: word; var wAddress5: word):word;
+begin
+
 end;
 
 
@@ -121,5 +134,7 @@ begin
     end;
 
 end;
+
+
 
 end.
