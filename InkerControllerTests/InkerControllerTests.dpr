@@ -17,7 +17,7 @@ program InkerControllerTests;
 uses
   DUnitTestRunner,
   TestDetectorController in 'TestDetectorController.pas',
-  DetectorController in '..\InkerController\DetectorController.pas';
+  InputSignalsController in '..\inkercontroller\InputSignalsController.pas';
 
 {R *.RES}
 

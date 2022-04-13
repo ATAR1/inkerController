@@ -28,7 +28,8 @@ package PromAutomation;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  vcl;
 
 contains
   Indicator in '..\InkerController\Indicator.pas';
