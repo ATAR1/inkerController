@@ -1,4 +1,4 @@
-object Form1: TForm1
+object MainWindow: TMainWindow
   Left = 0
   Top = 0
   Caption = #1059#1087#1088#1072#1074#1083#1077#1085#1080#1077' '#1082#1088#1072#1089#1082#1086#1086#1090#1084#1077#1090#1095#1080#1082#1086#1084
@@ -46,28 +46,28 @@ object Form1: TForm1
     object lblDelay1: TLabel
       Left = 11
       Top = 73
-      Width = 300
+      Width = 110
       Height = 13
       Caption = #1047#1072#1076#1077#1088#1078#1082#1072' 1-'#1075#1086' '#1082#1088'-'#1082#1072':'
     end
     object lblDelay2: TLabel
       Left = 11
       Top = 92
-      Width = 300
+      Width = 110
       Height = 13
       Caption = #1047#1072#1076#1077#1088#1078#1082#1072' 2-'#1075#1086' '#1082#1088'-'#1082#1072':'
     end
     object lblDelay3: TLabel
       Left = 11
       Top = 111
-      Width = 300
+      Width = 110
       Height = 13
       Caption = #1047#1072#1076#1077#1088#1078#1082#1072' 3-'#1075#1086' '#1082#1088'-'#1082#1072':'
     end
     object lblDelay4: TLabel
       Left = 11
       Top = 130
-      Width = 300
+      Width = 110
       Height = 13
       Caption = #1047#1072#1076#1077#1088#1078#1082#1072' 4-'#1075#1086' '#1082#1088'-'#1082#1072':'
     end

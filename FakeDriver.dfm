@@ -1,4 +1,4 @@
-object Form2: TForm2
+object FakeDriverForm: TFakeDriverForm
   Left = 0
   Top = 0
   Caption = #1048#1084#1080#1090#1072#1090#1086#1088' '#1087#1088#1086#1094#1077#1089#1089#1072' '#1082#1086#1085#1090#1088#1086#1083#1103

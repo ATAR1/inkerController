@@ -16,7 +16,7 @@ procedure PCI_DO16(wBaseAddr:LongInt; wOutputVal :LongInt)	;
 function  PCI_DI16(wPortAddr:LongInt)		      :   LongInt ;
 
 type
-  TForm2 = class(TForm)
+  TFakeDriverForm = class(TForm)
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
@@ -38,14 +38,14 @@ type
   end;
 
 var
-  Form2: TForm2;
-  Form: TForm2;
+  FakeDriverForm: TFakeDriverForm;
+  Form: TFakeDriverForm;
 implementation
 var stateByte:word;
 
 function  PCI_DriverInit(var wTotalBoards:WORD):WORD;
 begin
-Form:=TForm2.Create(nil);
+Form:=TFakeDriverForm.Create(nil);
 Form.Show();
 Form.Indicator1.SetOn();
 Result:=NoError;
@@ -84,7 +84,7 @@ end;
 
 {$R *.dfm}
 
-procedure TForm2.CheckBoxClick(Sender: TObject);
+procedure TFakeDriverForm.CheckBoxClick(Sender: TObject);
 var checkBox:TCheckBox;
     num:integer;
 begin
@@ -103,7 +103,7 @@ begin
 
 end;
 
-procedure TForm2.CheckBoxClick1(Sender: TObject);
+procedure TFakeDriverForm.CheckBoxClick1(Sender: TObject);
 var checkBox:TCheckBox;
     num:integer;
 begin

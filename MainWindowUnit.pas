@@ -1,4 +1,4 @@
-unit MainWindow;
+unit MainWindowUnit;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Indicator;
 
 type
-  TForm1 = class(TForm)
+  TMainWindow = class(TForm)
     Indicator1: TIndicator;
     Indicator2: TIndicator;
     Indicator3: TIndicator;
@@ -55,7 +55,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  MainWindow: TMainWindow;
 
 implementation
 uses
@@ -76,7 +76,7 @@ end;
 
 { TForm1 }
 
-procedure TForm1.Cycle(Sender: TObject);
+procedure TMainWindow.Cycle(Sender: TObject);
 var
   inputByte,output: Longint;
   delays:array [0..3] of integer;
@@ -93,7 +93,7 @@ begin
   ShowCalculatedValues();
 end;
 
-procedure TForm1.ShowIndicators(inputByte: Word);
+procedure TMainWindow.ShowIndicators(inputByte: Word);
 var
   i: Integer;
 begin
@@ -104,7 +104,7 @@ begin
       _indicators[i].SetOff;
 end;
 
-procedure TForm1.ShowSettings;
+procedure TMainWindow.ShowSettings;
 begin
   lblBoardAdress.Caption:='Адрес платы: '+IntToStr(baseAdress);
   lblDistanceDetectors1.Caption:='Дистанция между 1-м и 2-м фотодатчиком: '+IntToStr(distanceBetweenDetectors[0]);
@@ -116,7 +116,7 @@ begin
   lblInkerDistance4.Caption:='Расстояние до 4-го краскоотметчика: '+IntToStr(basesOfInker[3]);
 end;
 
-procedure TForm1.ShowCalculatedValues;
+procedure TMainWindow.ShowCalculatedValues;
 begin
   lblFrontSpeed.Caption := 'Скорость по переднему концу = ' + IntToStr(Round(speed * 1000));
   lblRearSpeed.Caption := 'Скорость по заднему концу = ' + IntToStr(Round(speed2 * 1000));
@@ -127,7 +127,7 @@ begin
   lblDelay4.Caption:= 'Задержка 4-го кр-ка:'+IntToStr(delays[3])+ ' мс.';
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMainWindow.FormCreate(Sender: TObject);
 var rtn:word;
     totalBoards:word;
 begin
@@ -161,7 +161,7 @@ begin
 
 end;
 
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TMainWindow.FormDestroy(Sender: TObject);
 begin
   PCI_DriverClose();
 end;

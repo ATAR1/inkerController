@@ -1,8 +1,8 @@
-program Project1;
+﻿program InkerController;
 
 uses
   Vcl.Forms,
-  MainWindow in 'MainWindow.pas' {Form1},
+  MainWindowUnit in 'MainWindowUnit.pas' {MainWindow},
   FakeDriver in 'FakeDriver.pas' {Form2},
   Indicator in 'Indicator.pas',
   Speedometer in 'Speedometer.pas',
@@ -15,7 +15,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMainWindow, MainWindow);
   Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.
