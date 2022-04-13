@@ -9,6 +9,9 @@
         <Projects Include="PromAutomationPkg\PromAutomation.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="InkerControllerTests\InkerControllerTests.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="PromAutomation:Make">
         <MSBuild Projects="PromAutomationPkg\PromAutomation.dproj" Targets="Make"/>
     </Target>
+    <Target Name="InkerControllerTests">
+        <MSBuild Projects="InkerControllerTests\InkerControllerTests.dproj"/>
+    </Target>
+    <Target Name="InkerControllerTests:Clean">
+        <MSBuild Projects="InkerControllerTests\InkerControllerTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="InkerControllerTests:Make">
+        <MSBuild Projects="InkerControllerTests\InkerControllerTests.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="InkerController;PromAutomation"/>
+        <CallTarget Targets="InkerController;PromAutomation;InkerControllerTests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="InkerController:Clean;PromAutomation:Clean"/>
+        <CallTarget Targets="InkerController:Clean;PromAutomation:Clean;InkerControllerTests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="InkerController:Make;PromAutomation:Make"/>
+        <CallTarget Targets="InkerController:Make;PromAutomation:Make;InkerControllerTests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
