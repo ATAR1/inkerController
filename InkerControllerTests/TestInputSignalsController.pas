@@ -1,4 +1,4 @@
-unit TestInputSignalsController;
+﻿unit TestInputSignalsController;
 {
 
   Delphi DUnit Test Case
@@ -12,7 +12,8 @@ unit TestInputSignalsController;
 interface
 
 uses
-  TestFramework, InputSignalsController, Vcl.ExtCtrls, Signal, System.Classes;
+  TestFramework, InputSignalsController, DIOCardInput, Signal, System.Classes,
+  Vcl.ExtCtrls;
 
 type
   // Test methods for class TInputSignalsController
@@ -21,14 +22,25 @@ type
   strict private
     FInputSignalsController: TInputSignalsController;
   public
+    procedure SetUp; override;
     procedure TearDown; override;
+
   published
-    procedure TestCheckDetectorsState;
+    procedure TestSetSignals;
+    procedure TestConstructorMustReadStateOfSignals;
   end;
 
 implementation
+uses
+  Delphi.Mocks, System.Generics.Collections;
 
-
+procedure TestTInputSignalsController.SetUp;
+var DIOCardMock: TMock<IDIOCardInput>;
+begin
+  DIOCardMock:=TMock<IDIOCardInput>.Create;
+  DIOCardMock.Setup.WillReturn(0).When.GetWord;
+  FInputSignalsController:=TInputSignalsController.Create(DIOCardMock);
+end;
 
 procedure TestTInputSignalsController.TearDown;
 begin
@@ -36,13 +48,31 @@ begin
   FInputSignalsController := nil;
 end;
 
-procedure TestTInputSignalsController.TestCheckDetectorsState;
+procedure TestTInputSignalsController.TestConstructorMustReadStateOfSignals;
 var
-  Sender: TObject;
+  DIOCard: TMock<IDIOCardInput>;
 begin
-  // TODO: Setup method call parameters
-  FInputSignalsController.CheckDetectorsState(Sender);
-  // TODO: Validate method results
+  DIOCard:=TMock<IDIOCardInput>.Create;
+  DIOCard.Setup.WillReturn(0).When.GetWord;
+  DIOCard.Setup.Expect.Once.When.GetWord;
+  TInputSignalsController.Create(DIOCard);
+end;
+
+procedure TestTInputSignalsController.TestSetSignals;
+var
+  inputWord: Word;
+  signal1,signal2: TMock<TSignal>;
+begin
+  signal1:=TMock<TSignal>.Create();
+  signal2:=TMock<TSignal>.Create();
+  FInputSignalsController.Signals.Add(signal1);
+  FInputSignalsController.Signals.Add(signal2);
+  inputWord:=2; //binary 0000 0000 0000 0010
+  signal1.Setup.Expect.Once.When.SetState(it0.IsEqualTo<boolean>(false));
+  signal2.Setup.Expect.Once.When.SetState(it0.IsEqualTo<boolean>(true));
+
+  FInputSignalsController.SetSignals(inputWord);
+  signal1.VerifyAll();
 end;
 
 initialization

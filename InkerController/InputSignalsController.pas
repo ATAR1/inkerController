@@ -14,7 +14,7 @@ type
   public
     property Signals: TArray<TSignal> read FSignals write FSignals;
     procedure CheckDetectorsState(Sender:TObject);
-    constructor Create();
+    constructor Create(DIOCard: IDIOCardInput);
   end;
 
 implementation
@@ -34,7 +34,7 @@ begin
     end;
 end;
 
-constructor TInputSignalsController.Create;
+constructor TInputSignalsController.Create(DIOCard: IDIOCardInput);
 begin
   FStoredState:=FDIOCard.GetWord;
 end;

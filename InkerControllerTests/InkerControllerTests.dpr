@@ -17,9 +17,9 @@ program InkerControllerTests;
 uses
   DUnitTestRunner,
   InputSignalsController in '..\inkercontroller\InputSignalsController.pas',
-  TestInputSignalsController in 'TestInputSignalsController.pas',
   Signal in '..\InkerController\Signal.pas',
-  DIOCardInput in '..\InkerController\DIOCardInput.pas';
+  DIOCardInput in '..\InkerController\DIOCardInput.pas',
+  TestInputSignalsController in 'TestInputSignalsController.pas';
 
 {R *.RES}
 
