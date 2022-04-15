@@ -12,7 +12,8 @@ uses
   DriverWrap in 'DriverWrap.pas',
   InputSignalsController in 'InputSignalsController.pas',
   Signal in 'Signal.pas',
-  DIOCardInput in 'DIOCardInput.pas';
+  DIOCardInput in 'DIOCardInput.pas',
+  Stopwatch in 'Stopwatch.pas';
 
 {$R *.res}
 

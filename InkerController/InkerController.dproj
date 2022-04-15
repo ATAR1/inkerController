@@ -115,6 +115,7 @@
         <DCCReference Include="InputSignalsController.pas"/>
         <DCCReference Include="Signal.pas"/>
         <DCCReference Include="DIOCardInput.pas"/>
+        <DCCReference Include="Stopwatch.pas"/>
         <None Include="InkerController.todo"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -153,6 +154,12 @@
                 <DeployFile LocalName="Win32\Debug\InkerController.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>InkerController.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="InkerController.todo" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
