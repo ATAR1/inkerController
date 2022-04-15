@@ -1,4 +1,4 @@
-﻿unit TestSignal;
+unit TestSignal;
 {
 
   Delphi DUnit Test Case
@@ -20,18 +20,29 @@ type
   TestTSignal = class(TTestCase)
   strict private
     FSignal: TSignal;
+    procedure SignalChangedHandler(value:boolean);
+  private
+    FSignalRaised: Boolean;
   public
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure TestSetState();
+    procedure TeTestSetStateWhenStateChangedRaiseHandlers;
   end;
 
 implementation
 
+uses
+  Delphi.Mocks;
+
 procedure TestTSignal.SetUp;
 begin
   FSignal := TSignal.Create;
+end;
+
+procedure TestTSignal.SignalChangedHandler(value: boolean);
+begin
+  FSignalRaised:=true;
 end;
 
 procedure TestTSignal.TearDown;
@@ -40,9 +51,15 @@ begin
   FSignal := nil;
 end;
 
-procedure TestTSignal.TestSetState;
+procedure TestTSignal.TeTestSetStateWhenStateChangedRaiseHandlers;
 begin
+  FSignal.SetState(False);
+  FSignalRaised:=false;
+  fsignal.RegisterHandler(SignalChangedHandler);
 
+  FSignal.SetState(True);
+
+  CheckTrue(FSignalRaised);
 end;
 
 initialization

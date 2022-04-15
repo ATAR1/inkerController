@@ -19,7 +19,8 @@ uses
   InputSignalsController in '..\inkercontroller\InputSignalsController.pas',
   Signal in '..\InkerController\Signal.pas',
   DIOCardInput in '..\InkerController\DIOCardInput.pas',
-  TestInputSignalsController in 'TestInputSignalsController.pas';
+  TestInputSignalsController in 'TestInputSignalsController.pas',
+  TestSignal in 'TestSignal.pas';
 
 {R *.RES}
 

@@ -1,4 +1,4 @@
-﻿unit TestInputSignalsController;
+unit TestInputSignalsController;
 {
 
   Delphi DUnit Test Case
@@ -26,7 +26,7 @@ type
     procedure TearDown; override;
 
   published
-    procedure TestSetSignals;
+    procedure TestSetSignalsMustSendBitsFromInputToSignalsArray;
     procedure TestConstructorMustReadStateOfSignals;
   end;
 
@@ -58,7 +58,7 @@ begin
   TInputSignalsController.Create(DIOCard);
 end;
 
-procedure TestTInputSignalsController.TestSetSignals;
+procedure TestTInputSignalsController.TestSetSignalsMustSendBitsFromInputToSignalsArray;
 var
   inputWord: Word;
   signal1,signal2: TMock<TSignal>;
@@ -72,7 +72,9 @@ begin
   signal2.Setup.Expect.Once.When.SetState(it0.IsEqualTo<boolean>(true));
 
   FInputSignalsController.SetSignals(inputWord);
+
   signal1.VerifyAll();
+  signal2.VerifyAll();
 end;
 
 initialization

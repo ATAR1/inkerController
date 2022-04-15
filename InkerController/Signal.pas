@@ -10,15 +10,24 @@ type
   private
     FState: boolean;
     FHandlers: TList<TSignalChangedHandler>;
-    procedure SetState(const Value: boolean);
     procedure RaiseHandlers(value:boolean);
+{$IfDef TEST}
+  public
+{$EndIf}
+    procedure SetState(const Value: boolean); virtual;
   public
     property State: boolean read FState write SetState;
+    constructor Create();
     procedure RegisterHandler(handler:TSignalChangedHandler);
   end;
 implementation
 
 { TSignal }
+
+constructor TSignal.Create;
+begin
+  FHandlers:=TList<TSignalChangedHandler>.Create;
+end;
 
 procedure TSignal.RaiseHandlers;
 var
@@ -28,7 +37,6 @@ begin
     begin
       handler(value);
     end;
-
 end;
 
 procedure TSignal.RegisterHandler(handler: TSignalChangedHandler);
