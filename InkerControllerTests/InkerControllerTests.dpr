@@ -20,7 +20,9 @@ uses
   Signal in '..\InkerController\Signal.pas',
   DIOCardInput in '..\InkerController\DIOCardInput.pas',
   TestInputSignalsController in 'TestInputSignalsController.pas',
-  TestSignal in 'TestSignal.pas';
+  TestSignal in 'TestSignal.pas',
+  TestStopwatch in 'TestStopwatch.pas',
+  Stopwatch in '..\InkerController\Stopwatch.pas';
 
 {R *.RES}
 
